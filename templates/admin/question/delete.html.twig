@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<p>
+    Voullez-vous vraiment supprimer cette question ?
+</p>
+<p>
+    <b>{{ question.name }}</b>
+</p>
+<p>
+    Cette question possède {{ question.answers|length }} réponse(s).
+    {% if question.answers|length > 0 %}
+        {% for answer in question.answers %}
+            <p>
+                <b>{{ answer.name }}</b>
+            </p>
+        {% endfor %}
+    {% endif %}
+</p>
+
+<form method="post" action="{{ path('admin_question_delete', {'id': question.id}) }}">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ question.id) }}">
+    <button class="btn">Supprimer</button>
+</form>
+
+<a href="{{ path('admin_quizz_settings', {'id': question.quizz.id}) }}">
+    <button type="button" name="button">Retour</button>
+</a>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+<li class="list-group-item">
+    <span class="badge">{{ question.answers|length }}</span>
+    <span data-toggle="collapse" href="#collapseExample-{{ question.id }}" role="button" aria-expanded="false" aria-controls="#collapseExample-{{ question.id }}">{{ question.name }}</span>
+    <a href="{{ path('admin_question_delete', {'id': question.id}) }}" class="btn btn-danger" style="float:right;">delete</a>
+    <div class="collapse" id="collapseExample-{{ question.id }}">
+        <p class="pt-3">
+            {% if question.answers|length > 0 %}
+                {% for answer in question.answers %}
+                    <span>{{ answer.name }}</span><br>
+                {% endfor %}
+            {% else %}
+                <span>Aucune question</span>
+            {% endif %}
+        </p>
+    </div>
+</li>
