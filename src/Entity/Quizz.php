@@ -24,19 +24,14 @@ class Quizz
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="quizzs")
-     */
-    private $category;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="quizz")
-     */
-    private $questions;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $active;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="quizz", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    private $questions;
 
     public function __construct()
     {
@@ -60,16 +55,20 @@ class Quizz
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function getActive(): ?bool
     {
-        return $this->category;
+        return $this->active;
     }
 
-    public function setCategory(?Category $category): self
+    public function setActive(bool $active): self
     {
-        $this->category = $category;
+        $this->active = $active;
 
         return $this;
+    }
+
+    public function __toString() {
+        return $this->name;
     }
 
     /**
@@ -101,21 +100,5 @@ class Quizz
         }
 
         return $this;
-    }
-
-    public function getActive(): ?bool
-    {
-        return $this->active;
-    }
-
-    public function setActive(bool $active): self
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    public function __toString() {
-        return $this->name;
     }
 }

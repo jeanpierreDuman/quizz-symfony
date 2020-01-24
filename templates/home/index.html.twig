@@ -3,7 +3,17 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
-    <p>
-        Welcome page !
-    </p>
+    {% for quizz in quizzs %}
+        <div>
+            <p>
+                {{ quizz.name }} - <a href="{{ path('quizz_try', {'id': quizz.id}) }}">Tester</a>
+            <p>
+        </div>
+    {% else %}
+        <div>
+            <p>
+                Aucun quizz
+            </p>
+        </div>
+    {% endfor %}
 {% endblock %}

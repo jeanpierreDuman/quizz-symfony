@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+
+        {{ form_row(form.name) }}
+
+        <ul class="questions" data-prototype="{{ form_widget(form.questions.vars.prototype)|e('html_attr') }}">
+             {% for question in form.questions %}
+                <li>
+                    {{ form_row(question.name) }}
+                    {{ form_row(question.reply1) }}
+                    {{ form_row(question.reply2) }}
+                    {{ form_row(question.reply3) }}
+                    {{ form_row(question.reply4) }}
+                    {{ form_row(question.truth1) }}
+                    {{ form_row(question.truth2) }}
+                    {{ form_row(question.truth3) }}
+                    {{ form_row(question.truth4) }}
+                </li>
+                <button class="removeQuestion">supprimer la question</button>
+             {% endfor %}
+         </ul>
+         <button class="addQuestion" type="button">Ajouter une question</button>
+    {{ form_end(form) }}
+
+    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/formCollection.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        <p>
+            <a href="{{path('admin_quizz_create')}}">Créer un quizz</a>
+        </p>
+    </div>
+
+    <div>
+        {% for message in app.flashes('notice') %}
+            <div class="alert alert-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% for quizz in quizzs %}
+        <div>
+            <p>
+                {{ quizz.name }} -
+                <a href="{{path('admin_quizz_update', {'id': quizz.id})}}">Mettre à jour</a> -
+                <a href="{{path('admin_quizz_delete', {'id': quizz.id})}}">Supprimer</a>
+            <p>
+        </div>
+    {% else %}
+        <div>
+            <p>
+                Aucun quizz
+            </p>
+        </div>
+    {% endfor %}
+{% endblock %}

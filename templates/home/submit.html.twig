@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    <div>
+        <p>
+            Vous avez eu {{ points }} point(s) !
+        </p>
+    </div>
+
+    <div>
+        <p>
+            <a href="{{ path('home') }}">Retour à la liste</a>
+        </p>
+    </div>
+
+{% endblock %}
