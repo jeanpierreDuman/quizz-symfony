@@ -8,7 +8,7 @@
         <h1>{{quizz.name}}</h1>
     </div>
 
-    <form method="POST" action="{{ path('submit_quizz') }}">
+    <form method="POST" action="{{ path('result_quizz') }}">
         {% for question in quizz.questions %}
             <div>
                 <p>Question : {{ question.name }}</p>
