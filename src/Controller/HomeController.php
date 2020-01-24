@@ -12,6 +12,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class HomeController extends AbstractController
 {
+    const OPERATOR = 5;
+
     /**
      * @Route("/", name="home")
      * @IsGranted("ROLE_USER")
@@ -48,7 +50,7 @@ class HomeController extends AbstractController
 
         foreach($replies as $reply) {
             if($reply === "1") {
-                $points++;
+                $points += self::OPERATOR;
             }
         }
 

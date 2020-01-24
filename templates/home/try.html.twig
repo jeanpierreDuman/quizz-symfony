@@ -4,34 +4,46 @@
 
 {% block body %}
 
-    <div>
-        <h1>{{quizz.name}}</h1>
-    </div>
 
-    <form method="POST" action="{{ path('result_quizz') }}">
-        {% for question in quizz.questions %}
-            <div>
-                <p>Question : {{ question.name }}</p>
-                <p>
-                    Réponse 1 : {{ question.reply1 }}
-                    <input type="checkbox" name="truth_{{question.id}}_1" value="{{ question.truth1 }}">
-                </p>
-                <p>
-                    Réponse 2 : {{ question.reply2 }}
-                    <input type="checkbox" name="truth_{{question.id}}_2" value="{{ question.truth2 }}">
-                </p>
-                <p>
-                    Réponse 3 : {{ question.reply3 }}
-                    <input type="checkbox" name="truth_{{question.id}}_3" value="{{ question.truth3 }}">
-                </p>
-                <p>
-                    Réponse 4 : {{ question.reply4 }}
-                    <input type="checkbox" name="truth_{{question.id}}_4" value="{{ question.truth4 }}">
-                </p>
-            </div>
-            <hr>
-        {% endfor %}
-        <input type="submit" value="Soumettre">
-    </form>
+
+    {% if quizz.active == false %}
+        <div>
+            <p>Ce quizz n'est pas encore active</p>
+
+            <p>
+                <a href="{{path('home')}}">Retour à la liste</a>
+            </p>
+        </div>
+    {% else %}
+        <div>
+            <h1>{{quizz.name}}</h1>
+        </div>
+
+        <form method="POST" action="{{ path('submit_result') }}">
+            {% for question in quizz.questions %}
+                <div>
+                    <p>Question : {{ question.name }}</p>
+                    <p>
+                        Réponse 1 : {{ question.reply1 }}
+                        <input type="checkbox" name="truth_{{question.id}}_1" value="{{ question.truth1 }}">
+                    </p>
+                    <p>
+                        Réponse 2 : {{ question.reply2 }}
+                        <input type="checkbox" name="truth_{{question.id}}_2" value="{{ question.truth2 }}">
+                    </p>
+                    <p>
+                        Réponse 3 : {{ question.reply3 }}
+                        <input type="checkbox" name="truth_{{question.id}}_3" value="{{ question.truth3 }}">
+                    </p>
+                    <p>
+                        Réponse 4 : {{ question.reply4 }}
+                        <input type="checkbox" name="truth_{{question.id}}_4" value="{{ question.truth4 }}">
+                    </p>
+                </div>
+                <hr>
+            {% endfor %}
+            <input type="submit" value="Soumettre">
+        </form>
+    {% endif %}
 
 {% endblock %}
