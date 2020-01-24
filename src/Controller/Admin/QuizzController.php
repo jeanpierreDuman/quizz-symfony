@@ -18,7 +18,7 @@ use App\Repository\QuizzRepository;
 class QuizzController extends AbstractController
 {
     /**
-     * @Route("/list", name="admin_quizz_list")
+     * @Route("/", name="admin_quizz_list")
      */
     public function list(QuizzRepository $quizzRepository)
     {
